@@ -212,7 +212,7 @@ public class CalcActivity extends Activity {
 
     void processOperation(Operation operation){
         if (currentOperation != null){ // operator has been pressed previously
-            if (runningNumber != ""){ // need number to operate on
+            if (!runningNumber.equals("")){ // need number to operate on
                 rightValueStr = runningNumber;
                 runningNumber = "";
 
@@ -232,6 +232,8 @@ public class CalcActivity extends Activity {
                 }
 
                 resultNumber = String.valueOf(result);
+                leftValueStr = resultNumber;
+                rightValueStr = "";
                 resultsView.setText(resultNumber);
             }
 
