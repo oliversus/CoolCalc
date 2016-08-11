@@ -16,11 +16,9 @@ public class CalcActivity extends Activity {
     }
 
     String runningNumber = "";
-    // String storedNumber = "";
     String leftValueStr = "";
     String rightValueStr = "";
     String resultNumber = "";
-    // String method = "";
     Operation currentOperation;
     int result = 0;
 
@@ -58,7 +56,6 @@ public class CalcActivity extends Activity {
             public void onClick(View v){
                 if (!runningNumber.equals("0") & !runningNumber.equals("")) {
                     numberPressed(0);
-                    // resultsView.setText(runningNumber);
                 }
             }
         });
@@ -67,7 +64,6 @@ public class CalcActivity extends Activity {
             @Override
             public void onClick(View v){
                 numberPressed(1);
-                // resultsView.setText(runningNumber);
             }
         });
 
@@ -75,7 +71,6 @@ public class CalcActivity extends Activity {
             @Override
             public void onClick(View v){
                 numberPressed(2);
-                // resultsView.setText(runningNumber);
             }
         });
 
@@ -83,7 +78,6 @@ public class CalcActivity extends Activity {
             @Override
             public void onClick(View v){
                 numberPressed(3);
-                // resultsView.setText(runningNumber);
             }
         });
 
@@ -91,7 +85,6 @@ public class CalcActivity extends Activity {
             @Override
             public void onClick(View v){
                 numberPressed(4);
-                // resultsView.setText(runningNumber);
             }
         });
 
@@ -99,7 +92,6 @@ public class CalcActivity extends Activity {
             @Override
             public void onClick(View v){
                 numberPressed(5);
-                // resultsView.setText(runningNumber);
             }
         });
 
@@ -107,7 +99,6 @@ public class CalcActivity extends Activity {
             @Override
             public void onClick(View v){
                 numberPressed(6);
-                // resultsView.setText(runningNumber);
             }
         });
 
@@ -115,7 +106,6 @@ public class CalcActivity extends Activity {
             @Override
             public void onClick(View v){
                 numberPressed(7);
-                // resultsView.setText(runningNumber);
             }
         });
 
@@ -123,7 +113,6 @@ public class CalcActivity extends Activity {
             @Override
             public void onClick(View v){
                 numberPressed(8);
-                // resultsView.setText(runningNumber);
             }
         });
 
@@ -131,7 +120,6 @@ public class CalcActivity extends Activity {
             @Override
             public void onClick(View v){
                 numberPressed(9);
-                // resultsView.setText(runningNumber);
             }
         });
 
@@ -141,42 +129,17 @@ public class CalcActivity extends Activity {
                 runningNumber = "";
                 leftValueStr = "";
                 rightValueStr = "";
+                result = 0;
+                resultNumber = "";
                 resultsView.setText(runningNumber);
+                currentOperation = null;
             }
         });
 
         calcButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-/*
-                if (!storedNumber.equals("") & !runningNumber.equals("")) {
-                    if (method.equals("divide")) {
-                        resultNumber = String.valueOf(Integer.parseInt(storedNumber) / Integer.parseInt(runningNumber));
-                        runningNumber = resultNumber;
-                        storedNumber = "";
-                        resultsView.setText(resultNumber);
-                    }
-                    if (method.equals("multiply")) {
-                        resultNumber = String.valueOf(Integer.parseInt(storedNumber) * Integer.parseInt(runningNumber));
-                        runningNumber = resultNumber;
-                        storedNumber = "";
-                        resultsView.setText(resultNumber);
-                    }
-                    if (method.equals("add")) {
-                        resultNumber = String.valueOf(Integer.parseInt(storedNumber) + Integer.parseInt(runningNumber));
-                        runningNumber = resultNumber;
-                        storedNumber = "";
-                        resultsView.setText(resultNumber);
-                    }
-                    if (method.equals("subtract")) {
-                        resultNumber = String.valueOf(Integer.parseInt(storedNumber) - Integer.parseInt(runningNumber));
-                        runningNumber = resultNumber;
-                        storedNumber = "";
-                        resultsView.setText(resultNumber);
-                    }
-
-                }
-*/
+                processOperation(Operation.EQUAL);
             }
         });
 
@@ -211,8 +174,11 @@ public class CalcActivity extends Activity {
     }
 
     void processOperation(Operation operation){
+
         if (currentOperation != null){ // operator has been pressed previously
+
             if (!runningNumber.equals("")){ // need number to operate on
+
                 rightValueStr = runningNumber;
                 runningNumber = "";
 
@@ -229,12 +195,15 @@ public class CalcActivity extends Activity {
                     case DIVIDE:
                         result = Integer.parseInt(leftValueStr) / Integer.parseInt(rightValueStr);
                         break;
+                    default:
+                        break;
                 }
 
                 resultNumber = String.valueOf(result);
                 leftValueStr = resultNumber;
                 rightValueStr = "";
                 resultsView.setText(resultNumber);
+
             }
 
 
